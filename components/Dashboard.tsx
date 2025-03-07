@@ -82,7 +82,7 @@ export default function Dashboard({ initialBatch, topCompanies }: DashboardProps
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <BackgroundBeamsDemo className="mb-12">
+      <BackgroundBeamsDemo className="mb-12 border-b border-muted">
         <div className="relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-4">
             YC Analytics Dashboard

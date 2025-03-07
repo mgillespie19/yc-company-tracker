@@ -128,36 +128,43 @@ export default function IndustryTrends({ trends, batchData }: IndustryTrendsProp
   }, [trends, comparedBatches]);
 
   return (
-    <Card className="p-6">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-semibold">Top Industries Over Time</h2>
-        <div className="flex items-center gap-4">
-          {comparedBatches.map((batch) => (
-            <div key={batch} className="flex items-center gap-2">
-              <span className="font-medium">{batch}</span>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-6 w-6"
-                onClick={() => removeBatchFromCompare(batch)}
-              >
-                <X className="h-4 w-4" />
-              </Button>
+    <Card className="p-4 sm:p-6">
+      {/* Responsive header that stacks on mobile */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4 sm:mb-6">
+        <h2 className="text-xl sm:text-2xl font-semibold">Top Industries Over Time</h2>
+        
+        {/* Scrollable filter container for mobile */}
+        <div className="relative">
+          <div className="flex items-center overflow-x-auto pb-2 sm:pb-0 scrollbar-hide max-w-full">
+            <div className="flex items-center gap-2 sm:gap-4 flex-nowrap">
+              {comparedBatches.map((batch) => (
+                <div key={batch} className="flex items-center gap-1 sm:gap-2 flex-shrink-0 bg-muted/30 px-2 py-1 rounded-md">
+                  <span className="font-medium text-sm sm:text-base">{batch}</span>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-5 w-5 sm:h-6 sm:w-6"
+                    onClick={() => removeBatchFromCompare(batch)}
+                  >
+                    <X className="h-3 w-3 sm:h-4 sm:w-4" />
+                  </Button>
+                </div>
+              ))}
+              <div className="flex items-center flex-shrink-0">
+                <BatchSelector
+                  value=""
+                  onValueChange={addBatchToCompare}
+                  excludeBatches={comparedBatches}
+                  className="w-7 h-7 sm:w-8 sm:h-8 p-0"
+                >
+                  <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
+                </BatchSelector>
+              </div>
             </div>
-          ))}
-          <div className="flex items-center gap-2">
-            <BatchSelector
-              value=""
-              onValueChange={addBatchToCompare}
-              excludeBatches={comparedBatches}
-              className="w-8 h-8 p-0"
-            >
-              <Plus className="h-4 w-4" />
-            </BatchSelector>
           </div>
         </div>
       </div>
-      <div className="h-[400px]">
+      <div className="h-[300px] sm:h-[400px]">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart 
             data={chartData}
