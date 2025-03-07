@@ -2,8 +2,6 @@
 
 A modern, interactive dashboard for analyzing Y Combinator startup batches, industry trends, and top companies.
 
-![YC Analytics Dashboard](https://your-screenshot-url-here.png)
-
 ## Features
 
 - **Batch Analytics**: View detailed statistics for each YC batch
